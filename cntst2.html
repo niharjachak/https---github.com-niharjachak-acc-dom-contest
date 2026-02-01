@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Counter using HTML</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 40px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        #countText {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        #error {
+            color: red;
+            display: none;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #clearBtn {
+            display: none;
+            background-color: black;
+            color: white;
+            border: 1px solid white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Counter using HTML</h1>
+
+    <div id="countText">
+        Your Current Count is : <span id="count">0</span>
+    </div>
+
+    <div id="error">Error : Cannot go below 0</div>
+
+    <button onclick="decrement()">Decrement</button>
+    <button onclick="increment()">Increment</button>
+    <button id="clearBtn" onclick="clearCount()">Clear</button>
+
+    <script>
+        let count = 0;
+
+        const countSpan = document.getElementById("count");
+        const errorDiv = document.getElementById("error");
+        const clearBtn = document.getElementById("clearBtn");
+
+        function increment() {
+            count++;
+            countSpan.innerHTML = count;
+            errorDiv.style.display = "none";
+
+            if (count > 0) {
+                clearBtn.style.display = "inline-block";
+            }
+        }
+
+        function decrement() {
+            if (count === 0) {
+                errorDiv.style.display = "block";
+                return;
+            }
+
+            count--;
+            countSpan.innerHTML = count;
+            errorDiv.style.display = "none";
+
+            if (count === 0) {
+                clearBtn.style.display = "none";
+            }
+        }
+
+        function clearCount() {
+            count = 0;
+            countSpan.innerHTML = count;
+            clearBtn.style.display = "none";
+            errorDiv.style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
